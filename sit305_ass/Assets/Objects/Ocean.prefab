@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 64306754226443370}
   - component: {fileID: 23261062782045998}
   m_Layer: 0
-  m_Name: Ocean
+  m_Name: ocean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
