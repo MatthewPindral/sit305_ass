@@ -9,3 +9,5 @@ SID: 215315133
 - I couldn't find your text-based data. Create a root folder "data/" and put all your JSON files in there.
 - You're still missing a licenses.txt + changelog.md file.
 
+# Henry comments 17/April
+- I'm still waiting on that changelog file :)
