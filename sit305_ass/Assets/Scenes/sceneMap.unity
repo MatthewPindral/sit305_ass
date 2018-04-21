@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 595339743}
   - component: {fileID: 595339742}
   m_Layer: 5
-  m_Name: mapCanvas
+  m_Name: canvasMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -642,7 +642,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 595339741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 420.5, y: 170.5, z: 0}
+  m_LocalPosition: {x: 415.5, y: 170.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1489829381}
