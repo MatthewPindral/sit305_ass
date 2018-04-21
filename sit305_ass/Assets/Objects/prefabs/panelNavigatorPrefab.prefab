@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 222585940095747620}
   - component: {fileID: 114995302147078214}
   m_Layer: 5
-  m_Name: panelNavigator
+  m_Name: panelNavigatorPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

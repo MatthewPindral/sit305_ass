@@ -1,0 +1,11 @@
+20180317-Inital Commit/updating gitignore/Add sceneMain
+20180326-Add environment to scemeMain/Add sceneMap/Import Map image(see licences.txt)
+20180330-Sizing map within sceneMap
+20180331-Add README file
+20180401-Add UI fetures to sceneMap
+20180402-Merging of README file from Github/Add testButton within sceneMap/Numerous sceneMap UI enhancements
+20180407-Add sceneTrade which will support the trading of items within the game
+20180308-Remove UI features within sceneMap, which will be included intot he sceneTrade for better user experience
+20180309-Additional sceneMap UI enhancements to neaten the UI
+20180416-Added buttons to sceneTrade as per UI design
+20180421-Added resources folder with changelog, data, demonstrationVideo, images, licenses, marking justification, readme, sounds folders
