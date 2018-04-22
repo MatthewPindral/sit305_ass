@@ -1,1 +1,1 @@
-Alexis,A,B,C,D,1,2_Zeon,E,F,G,H,3,4_Nova,I,J,K,L,5,6_Serilda,M,N,O,P,7,8_Claudia,Q,R,S,T,9,10_
+portName,doYouOwnPort,portTax,chancePirates,silverValue,potteryValue_Alexis,no,low,low,low,low_Zeon,no,low,low,low,low_Nova,no,medium,medium,medium,medium_Serilda,no,high,high,high,high_Claudia,no,high,high,high,high_

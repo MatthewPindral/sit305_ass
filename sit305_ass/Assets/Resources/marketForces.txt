@@ -1,0 +1,1 @@
+taxMarket,pirateMarket,silverMarket,potteryMarket_low,low,low,low_

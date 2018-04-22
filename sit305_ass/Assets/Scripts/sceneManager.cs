@@ -30,7 +30,7 @@ public class sceneManager : MonoBehaviour {
     public void buttonExitApplication()
     {
 
-        //Open trade scene
+        //Exit application
         Application.Quit();
 
     }
