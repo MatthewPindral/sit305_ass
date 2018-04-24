@@ -20,6 +20,24 @@ public class dataManager {
 
     //I need a function to be able to insert values into the gameData file
 
+    public void writeToDataFile(string updatedGameFile)
+    {
+        string temporaryTextFileName = "data";
+
+        //I want to add the data file headings to the updatedGameDataFile
+        updatedGameFile = returnGameDataHeadings() + updatedGameFile;
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", updatedGameFile);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
+
+
+
 
     //I need a function to be able to insert values into the marketForces file
 
@@ -104,11 +122,33 @@ public class dataManager {
 
     }
 
+
+    public string returnGameDataHeadings()
+    {
+        string gameDataHeadings = "";
+
+        //Read the data text file
+        string temporaryTextFileName = "data";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        string wholeTextFile = textAsset.text;
+
+        //Find where the game data headings finish
+        int endIndex = wholeTextFile.IndexOf("_") + 1;
+
+        //Get the substring
+        gameDataHeadings = wholeTextFile.Substring(0,endIndex);
+        
+        return gameDataHeadings;
+    }
+
     public string returnGameData()
     {
         string gameData = "";
 
-        //Read the port text file
+        //Read the data text file
         string temporaryTextFileName = "data";
         UnityEditor.AssetDatabase.Refresh();
         TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;

@@ -1699,7 +1699,7 @@ Prefab:
     - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224766578925545508, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
@@ -2044,7 +2044,7 @@ Prefab:
     - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
@@ -2055,11 +2055,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 68423384}
+      objectReference: {fileID: 68423385}
     - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: buttonChangeScene
+      value: updateGameDataPort
       objectReference: {fileID: 0}
     - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
@@ -2069,7 +2069,37 @@ Prefab:
     - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: sceneTravel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 68423384}
+    - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: buttonChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: sceneTrade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e02d0aae219906949b72e7d1fb03c897, type: 2}

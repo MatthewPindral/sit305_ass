@@ -29,6 +29,8 @@ public class tradeManager : MonoBehaviour {
 
         //Need to get the port that you have travelled to
 
+
+
         //Need to take the tax off your money OR receive money from the tax if you own it
         portTax();
 
@@ -126,6 +128,7 @@ public class tradeManager : MonoBehaviour {
 
         //If you click the buy or sell button
 
+        
 
         //Write it to the data file
 

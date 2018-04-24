@@ -26,7 +26,7 @@ public class mapManager : MonoBehaviour {
     string[] port;
     string[] forces;
 
-    List<portTempValueManager> portsList = new List<portTempValueManager>();
+    List<portTempValueManager> portsListForPresentationOnScreen = new List<portTempValueManager>();
 
     //string lastPortChosen;
     public static portTempValueManager lastPortChosen;
@@ -53,7 +53,7 @@ public class mapManager : MonoBehaviour {
 
         TravelButton.interactable = true;
 
-        foreach (var pm in portsList)
+        foreach (var pm in portsListForPresentationOnScreen)
         {
             if (portClicked == pm.portName)
             {
@@ -419,16 +419,33 @@ public class mapManager : MonoBehaviour {
             }
 
             portTempValueManager pm = new portTempValueManager(portValue[0], portValue[1], Int32.Parse(portValue[2]), Int32.Parse(portValue[3]), Int32.Parse(portValue[4]), Int32.Parse(portValue[5]));
-            portsList.Add(pm);
+            portsListForPresentationOnScreen.Add(pm);
 
         }
 
 
     }
 
-    public void travelToPort()
+    public void updateGameDataPort()
     {
-        //update the data file regarding where you are going to
+
+        string updatedGameData = "";
+        
+        //Save the last port chosen into the game Data array
+        gameData[5]=lastPortChosen.portName;
+        
+        //Compile the array back to a single string
+        foreach (string gd in gameData)
+        {
+            updatedGameData = updatedGameData + gd+",";
+        }
+
+        //Chop off the last comma
+        int index = updatedGameData.LastIndexOf(',');
+        updatedGameData = updatedGameData.Substring(0, index);
+
+        //Then update the data file
+        dm.writeToDataFile(updatedGameData);
 
 
     }
