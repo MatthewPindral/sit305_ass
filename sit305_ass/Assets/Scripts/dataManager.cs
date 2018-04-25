@@ -35,14 +35,25 @@ public class dataManager {
 
     }
 
+    public string returnPirateAlert()
+    {
+        string allPorts = "";
 
+        //Read the port text file
+        string temporaryTextFileName = "scripts";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
 
+        //Get the whole text file
+        string wholeTextFile = textAsset.text;
 
+        //Find where the first port starts
+        int startIndex = wholeTextFile.IndexOf("_") + 1;
 
-    //I need a function to be able to insert values into the marketForces file
+        allPorts = wholeTextFile.Substring(startIndex);
 
-
-
+        return allPorts;
+    }
 
 
 

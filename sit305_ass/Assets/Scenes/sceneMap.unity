@@ -914,6 +914,16 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -122
       objectReference: {fileID: 0}
+    - target: {fileID: 114321535642224396, guid: 16ba363ab2042964d920e0c5dec4a43d,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 68423384}
+    - target: {fileID: 114321535642224396, guid: 16ba363ab2042964d920e0c5dec4a43d,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: buttonChangeScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16ba363ab2042964d920e0c5dec4a43d, type: 2}
   m_IsPrefabParent: 0
@@ -1034,7 +1044,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 595339741}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 416, y: 170.5, z: 0}
+  m_LocalPosition: {x: 429, y: 170.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1489829381}
@@ -2099,7 +2109,7 @@ Prefab:
     - target: {fileID: 114182410097282074, guid: e02d0aae219906949b72e7d1fb03c897,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: sceneTrade
+      value: sceneTravel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e02d0aae219906949b72e7d1fb03c897, type: 2}

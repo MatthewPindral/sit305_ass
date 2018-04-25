@@ -1,0 +1,1 @@
+textPirateAlert,textSilverTaken,textPotteryTaken_You were visited by Pirates as you did not have enough crew defending your merchandise. , Silver items were taken from you. , Pottery items were taken from you. Hirring more crew would have avoided this terrible turn of events.
