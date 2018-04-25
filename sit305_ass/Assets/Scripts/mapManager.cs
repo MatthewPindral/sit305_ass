@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class mapManager : MonoBehaviour {
 
@@ -26,6 +27,8 @@ public class mapManager : MonoBehaviour {
     string[] port;
     string[] forces;
 
+    public static bool doITakeMoney;
+
     List<portTempValueManager> portsListForPresentationOnScreen = new List<portTempValueManager>();
 
     //string lastPortChosen;
@@ -33,6 +36,8 @@ public class mapManager : MonoBehaviour {
 
     private void Start()
     {
+        doITakeMoney = false;
+
         dm  = new dataManager();
         string returnedPorts = dm.returnAllPorts();
         string returnedMarketForces = dm.returnMarketForces();
@@ -45,6 +50,13 @@ public class mapManager : MonoBehaviour {
         disableButton();
 
         populatePortDetails();
+
+    }
+
+    public void goToTrade()
+    {
+        doITakeMoney = false;
+        SceneManager.LoadScene("sceneTrade", LoadSceneMode.Single);
 
     }
 

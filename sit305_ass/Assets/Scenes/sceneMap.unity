@@ -752,7 +752,7 @@ Prefab:
     - target: {fileID: 114094112672344256, guid: 4c6cd6f35a41a7b43a9da2021ed492b0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114094112672344256, guid: 4c6cd6f35a41a7b43a9da2021ed492b0,
         type: 2}
@@ -763,11 +763,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 68423384}
+      objectReference: {fileID: 68423385}
     - target: {fileID: 114094112672344256, guid: 4c6cd6f35a41a7b43a9da2021ed492b0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: buttonChangeScene
+      value: goToTrade
       objectReference: {fileID: 0}
     - target: {fileID: 114094112672344256, guid: 4c6cd6f35a41a7b43a9da2021ed492b0,
         type: 2}
@@ -777,7 +777,7 @@ Prefab:
     - target: {fileID: 114094112672344256, guid: 4c6cd6f35a41a7b43a9da2021ed492b0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: sceneTrade
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c6cd6f35a41a7b43a9da2021ed492b0, type: 2}

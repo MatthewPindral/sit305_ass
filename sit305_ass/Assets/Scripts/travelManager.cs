@@ -63,6 +63,8 @@ public class travelManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(10.0f);
 
+        mapManager.doITakeMoney = true;
+
         SceneManager.LoadScene("sceneTrade", LoadSceneMode.Single);
 
     }

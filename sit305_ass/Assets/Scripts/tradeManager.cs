@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class tradeManager : MonoBehaviour {
 
@@ -30,7 +31,11 @@ public class tradeManager : MonoBehaviour {
 
     string alertString;
 
-
+    public Text money;
+    public Text portsOwned;
+    public Text crewHired;
+    public Text silverItemsOwned;
+    public Text potteryItemsOwned;
 
 
     // Use this for initialization
@@ -50,11 +55,20 @@ public class tradeManager : MonoBehaviour {
         string returnedMarketForces = dm.returnMarketForces();
         marketForces = returnedMarketForces.Split(',');
 
-        //Need to take the tax off your money OR receive money from the tax if you own it
-        portTax();
 
-        //Need to pay the crew (which is influenced by market forces)
-        payCrew();
+        if (mapManager.doITakeMoney)
+        {
+
+            //Need to take the tax off your money OR receive money from the tax if you own it
+            portTax();
+
+            //Need to pay the crew (which is influenced by market forces)
+            payCrew();
+
+        }
+
+
+
         		
 	}
 
@@ -84,15 +98,33 @@ public class tradeManager : MonoBehaviour {
             gameData[0] = (Int32.Parse(gameData[0]) + ran).ToString();
 
             //compile the alert string
-            alertString = scripts[4] + (Int32.Parse(gameData[0]) + ran);
+            alertString = " " + scripts[4] + (Int32.Parse(gameData[0]) + ran);
         }
 
         //Write it to the data file
         updateGameDataItems();
 
         //Update the Main Panel
-        mpm.updateMainGamePanel();
+        updateMainGamePanel();
 
+    }
+
+
+    public void updateMainGamePanel()
+    {
+        dm = new dataManager();
+        //Read the game data file
+        returnedGameData = dm.returnGameData();
+
+        //Split it by commas
+        gameData = returnedGameData.Split(',');
+
+        //Update the main game panel text boxes
+        money.text = gameData[0];
+        portsOwned.text = gameData[1];
+        crewHired.text = gameData[2];
+        silverItemsOwned.text = gameData[3];
+        potteryItemsOwned.text = gameData[4];
     }
 
     public void showAlert()
@@ -102,7 +134,6 @@ public class tradeManager : MonoBehaviour {
         alertText.text = alertString;
 
     }
-
 
     public void updateGameDataItems()
     {
@@ -124,7 +155,6 @@ public class tradeManager : MonoBehaviour {
 
     }
 
-
     public void payCrew()
     {
 
@@ -136,34 +166,57 @@ public class tradeManager : MonoBehaviour {
         //Get market forces
         if (marketForces[4].Equals("low"))
         {
-            wages = Int32.Parse(gameData[2]) * random.Next(100, 300);
+            wages = Int32.Parse(gameData[2]) * random.Next(50, 100);
         } else if (marketForces[4].Equals("medium"))
         {
-            wages = Int32.Parse(gameData[2]) * random.Next(400, 600);
+            wages = Int32.Parse(gameData[2]) * random.Next(100, 300);
         }
         else{
             wages = Int32.Parse(gameData[2]) * random.Next(400, 600);
         }
 
-        //Compile the alert list for the last time
-        alertString = alertString + scripts[5] + wages;
+        //take those wages off your money
+        gameData[0] = (Int32.Parse(gameData[0]) - wages).ToString();
+
+
+        //If they still have money on the bank
+        if (Int32.Parse(gameData[0]) > 0)
+        {
+            //Compile the alert list for the last time
+            alertString = alertString + " " + scripts[5] + wages;
+
+        }else
+        {
+            //If they havegone into negative
+            alertString = scripts[6];
+
+        }
 
 
         //Write it to the data file
         updateGameDataItems();
 
         //Update the Main Panel
-        mpm.updateMainGamePanel();
+        updateMainGamePanel();
 
         //Show an alert with all of the money you made or lost
         showAlert();
-        
 
     }
 
     public void closeAlert()
     {
-        alertPanel.SetActive(false);
+        //If they still have money
+        if (Int32.Parse(gameData[0]) > 0)
+        {
+            alertPanel.SetActive(false);
+        }else
+        {
+            //If you dont have money then it takes you back to the main scene and resets the game save
+            dm.writeDataResetToFile();
+
+            SceneManager.LoadScene("sceneMain", LoadSceneMode.Single);
+        }
     }
 
 

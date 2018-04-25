@@ -171,4 +171,35 @@ public class dataManager {
     }
 
 
+    public string returnGameDataReset()
+    {
+        string gameData = "";
+
+        //Read the data text file
+        string temporaryTextFileName = "dataReset";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        gameData = textAsset.text;
+
+        Debug.Log("here: "+ gameData);
+
+        return gameData;
+
+    }
+
+    public void writeDataResetToFile()
+    {
+        string temporaryTextFileName = "data";
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", returnGameDataReset());
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
+
 }

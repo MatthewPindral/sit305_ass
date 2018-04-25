@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class mainPanelManager : MonoBehaviour {
+public class mainPanelManager : MonoBehaviour{
 
     public dataManager dm;
     string returnedGameData;
@@ -26,6 +26,8 @@ public class mainPanelManager : MonoBehaviour {
     {
         //Read the game data file
         returnedGameData = dm.returnGameData();
+
+        Debug.Log("I am here: "+ returnedGameData);
 
         //Split it by commas
         gameData = returnedGameData.Split(',');

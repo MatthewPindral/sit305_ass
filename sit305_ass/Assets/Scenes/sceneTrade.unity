@@ -2207,6 +2207,11 @@ MonoBehaviour:
   alertPanel: {fileID: 383815590}
   alertText: {fileID: 383815591}
   alertButton: {fileID: 383815592}
+  money: {fileID: 1665140501}
+  portsOwned: {fileID: 1665140500}
+  crewHired: {fileID: 1665140499}
+  silverItemsOwned: {fileID: 1665140498}
+  potteryItemsOwned: {fileID: 1665140497}
 --- !u!1001 &1544564622
 Prefab:
   m_ObjectHideFlags: 0
