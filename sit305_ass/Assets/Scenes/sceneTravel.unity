@@ -513,6 +513,11 @@ MonoBehaviour:
   alertPanel: {fileID: 593658209}
   alertText: {fileID: 990667638}
   okButton: {fileID: 2012718378}
+  money: {fileID: 369952300}
+  portsOwned: {fileID: 369952299}
+  crewHiredText: {fileID: 369952298}
+  silverItemsOwned: {fileID: 369952297}
+  potteryItemsOwned: {fileID: 369952296}
 --- !u!114 &862109035
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,12 +14,20 @@ public class travelManager : MonoBehaviour {
     public Button okButton;
 
     string[] gameData;
+    string returnedGameData;
 
     int crewHired;
     int silverOwned;
     int potteryOwned;
     int howManySilverPiratesTook;
     int howManyPotteryPiratesTook;
+
+
+    public Text money;
+    public Text portsOwned;
+    public Text crewHiredText;
+    public Text silverItemsOwned;
+    public Text potteryItemsOwned;
 
     // Use this for initialization
     void Start () {
@@ -34,6 +42,8 @@ public class travelManager : MonoBehaviour {
             pirateTakesItems();
 
             updateGameDataItems();
+
+            updateMainGamePanel();
 
             //Show an alert of what just happened
             showAlert();
@@ -58,6 +68,24 @@ public class travelManager : MonoBehaviour {
         StartCoroutine(waitAndClose());
 
     }
+
+    public void updateMainGamePanel()
+    {
+        dm = new dataManager();
+        //Read the game data file
+        returnedGameData = dm.returnGameData();
+
+        //Split it by commas
+        gameData = returnedGameData.Split(',');
+
+        //Update the main game panel text boxes
+        money.text = gameData[0];
+        portsOwned.text = gameData[1];
+        crewHiredText.text = gameData[2];
+        silverItemsOwned.text = gameData[3];
+        potteryItemsOwned.text = gameData[4];
+    }
+
 
     IEnumerator waitAndClose()
     {
