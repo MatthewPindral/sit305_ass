@@ -59,7 +59,6 @@ public class travelManager : MonoBehaviour {
 
     }
 
-
     IEnumerator waitAndClose()
     {
         yield return new WaitForSeconds(10.0f);
@@ -67,9 +66,7 @@ public class travelManager : MonoBehaviour {
         SceneManager.LoadScene("sceneTrade", LoadSceneMode.Single);
 
     }
-
-
-
+    
     public void pirateTakesItems()
     {
         
@@ -199,23 +196,13 @@ public class travelManager : MonoBehaviour {
     {
         alertPanel.SetActive(true);
 
-        string returnedPirateAlertScripts = dm.returnPirateAlert();
+        string returnedPirateAlertScripts = dm.returnScripts();
 
         string[] scripts = returnedPirateAlertScripts.Split(',');
 
         alertText.text = scripts[0] + howManySilverPiratesTook.ToString() + scripts[1].ToString() + howManyPotteryPiratesTook.ToString() + scripts[2].ToString();
 
-
     }
-
-
-
-
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     bool doesPirateCome()
     {

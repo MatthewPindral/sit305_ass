@@ -35,7 +35,7 @@ public class dataManager {
 
     }
 
-    public string returnPirateAlert()
+    public string returnScripts()
     {
         string allPorts = "";
 
@@ -69,17 +69,10 @@ public class dataManager {
         //Get the whole text file
         string wholeTextFile = textAsset.text;
 
-        //Find where the market forces starts
+        //Find where the first port starts
         int startIndex = wholeTextFile.IndexOf("_") + 1;
 
-        //Slice off any text before the file intro
-        string partTextFile = wholeTextFile.Substring(startIndex);
-
-        //Find where the market forcesfinish at the underscore
-        int endIndex = partTextFile.IndexOf("_");
-
-        //The end result is the part text file ending at the first underscore
-        marketForces = partTextFile.Substring(0, endIndex);
+        marketForces = wholeTextFile.Substring(startIndex);
 
         return marketForces;
     }

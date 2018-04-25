@@ -1,1 +1,1 @@
-MoneyOwned,PortsOwned,CrewHired,SilverItems,PotteryItems,CurrentPort_1000,0,4,0,0,Zeon
+MoneyOwned,PortsOwned,CrewHired,SilverItems,PotteryItems,CurrentPort_730,0,4,4,4,Alexis
