@@ -11,3 +11,10 @@ SID: 215315133
 
 # Henry comments 17/April
 - I'm still waiting on that changelog file :)
+
+# Henry comments 27/April
+- Good to see some progress, especially data
+- This file still needs compile instructions, and directory explanation so I know where to find stuff.
+- Your changelog needs a lot of work. And it also needs to be placed in the root directory here.
+
+
