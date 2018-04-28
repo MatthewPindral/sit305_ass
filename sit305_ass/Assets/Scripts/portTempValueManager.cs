@@ -10,8 +10,9 @@ public class portTempValueManager {
     public int chancePirates;
     public int silverValue;
     public int potteryValue;
+    public int portOwnValue;
 
-    public portTempValueManager(string nm, string own, int tax, int pirates,int silver, int pottery)
+    public portTempValueManager(string nm, string own, int tax, int pirates,int silver, int pottery, int ownValue)
     {
         portName = nm;
         doYouOwnPort = own;
@@ -19,6 +20,7 @@ public class portTempValueManager {
         chancePirates = pirates;
         silverValue = silver;
         potteryValue = pottery;
+        portOwnValue = ownValue;
     }
 
 }

@@ -430,7 +430,87 @@ public class mapManager : MonoBehaviour {
 
             }
 
-            portTempValueManager pm = new portTempValueManager(portValue[0], portValue[1], Int32.Parse(portValue[2]), Int32.Parse(portValue[3]), Int32.Parse(portValue[4]), Int32.Parse(portValue[5]));
+
+
+            //HERE DOING THIS BELOW
+
+            //PORT OWNERSHIP VALUE
+            if (portValue[6].Equals("low"))
+            {
+                if (forces[5].Equals("low"))
+                {
+
+                    randomNumber = random.Next(2000, 4000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+                if (forces[5].Equals("medium"))
+                {
+
+                    randomNumber = random.Next(3000, 5000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+                if (forces[5].Equals("high"))
+                {
+
+                    randomNumber = random.Next(6000, 8000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+            }
+
+            if (portValue[6].Equals("medium"))
+            {
+                if (forces[5].Equals("low"))
+                {
+
+                    randomNumber = random.Next(6000, 8000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+                if (forces[5].Equals("medium"))
+                {
+
+                    randomNumber = random.Next(7000, 9000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+                if (forces[5].Equals("high"))
+                {
+
+                    randomNumber = random.Next(8000, 10000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+            }
+
+            if (portValue[6].Equals("high"))
+            {
+                if (forces[5].Equals("low"))
+                {
+
+                    randomNumber = random.Next(7000, 9000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+                if (forces[5].Equals("medium"))
+                {
+
+                    randomNumber = random.Next(8000, 9000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+                if (forces[5].Equals("high"))
+                {
+
+                    randomNumber = random.Next(9000, 11000);
+                    portValue[6] = randomNumber.ToString();
+                }
+
+            }
+
+            portTempValueManager pm = new portTempValueManager(portValue[0], portValue[1], Int32.Parse(portValue[2]), Int32.Parse(portValue[3]), Int32.Parse(portValue[4]), Int32.Parse(portValue[5]), Int32.Parse(portValue[6]));
             portsListForPresentationOnScreen.Add(pm);
 
         }

@@ -1,1 +1,1 @@
-taxMarket,pirateMarket,silverMarket,potteryMarket,wageMarket_low,low,low,low,low
+taxMarket,pirateMarket,silverMarket,potteryMarket,wageMarket,realEstateMarket_low,low,low,low,low,low

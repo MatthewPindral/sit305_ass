@@ -7,10 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class tradeManager : MonoBehaviour {
 
-    public Button buyOrSellPort;
-    public Button hireOrFireCrew;
-    public Button buyOrSellSilver;
-    public Button buyOrSellPottery;
+    public Button buttonBuyOrSellPort;
+    public Button ButtonHireOrFireCrew;
+    public Button ButtonBuyOrSellSilver;
+    public Button buttonBuyOrSellPottery;
+
+    public Text textHeaderDescription;
+
+    public Text textBuyDescription;
+    public Text textSellDescription;
 
     public Button buyButton;
     public Button sellButton;
@@ -36,6 +41,9 @@ public class tradeManager : MonoBehaviour {
     public Text crewHired;
     public Text silverItemsOwned;
     public Text potteryItemsOwned;
+
+    public InputField inputBuy;
+    public InputField inputSell;
 
 
     // Use this for initialization
@@ -66,9 +74,6 @@ public class tradeManager : MonoBehaviour {
             payCrew();
 
         }
-
-
-
         		
 	}
 
@@ -109,6 +114,56 @@ public class tradeManager : MonoBehaviour {
 
     }
 
+    public void payCrew()
+    {
+
+        System.Random random = new System.Random();
+
+        int wages;
+
+        //The more crew you have then the more you pay, and it is determined by marketForces
+        //Get market forces
+        if (marketForces[4].Equals("low"))
+        {
+            wages = Int32.Parse(gameData[2]) * random.Next(50, 100);
+        }
+        else if (marketForces[4].Equals("medium"))
+        {
+            wages = Int32.Parse(gameData[2]) * random.Next(100, 300);
+        }
+        else
+        {
+            wages = Int32.Parse(gameData[2]) * random.Next(400, 600);
+        }
+
+        //take those wages off your money
+        gameData[0] = (Int32.Parse(gameData[0]) - wages).ToString();
+
+
+        //If they still have money on the bank
+        if (Int32.Parse(gameData[0]) > 0)
+        {
+            //Compile the alert list for the last time
+            alertString = alertString + " " + scripts[5] + wages;
+
+        }
+        else
+        {
+            //If they havegone into negative
+            alertString = scripts[6];
+
+        }
+
+        //Write it to the data file
+        updateGameDataItems();
+
+        //Update the Main Panel
+        updateMainGamePanel();
+
+        //Show an alert with all of the money you made or lost
+        showAlert();
+
+    }
 
     public void updateMainGamePanel()
     {
@@ -155,55 +210,6 @@ public class tradeManager : MonoBehaviour {
 
     }
 
-    public void payCrew()
-    {
-
-        System.Random random = new System.Random();
-
-        int wages;
-
-        //The more crew you have then the more you pay, and it is determined by marketForces
-        //Get market forces
-        if (marketForces[4].Equals("low"))
-        {
-            wages = Int32.Parse(gameData[2]) * random.Next(50, 100);
-        } else if (marketForces[4].Equals("medium"))
-        {
-            wages = Int32.Parse(gameData[2]) * random.Next(100, 300);
-        }
-        else{
-            wages = Int32.Parse(gameData[2]) * random.Next(400, 600);
-        }
-
-        //take those wages off your money
-        gameData[0] = (Int32.Parse(gameData[0]) - wages).ToString();
-
-
-        //If they still have money on the bank
-        if (Int32.Parse(gameData[0]) > 0)
-        {
-            //Compile the alert list for the last time
-            alertString = alertString + " " + scripts[5] + wages;
-
-        }else
-        {
-            //If they havegone into negative
-            alertString = scripts[6];
-
-        }
-
-
-        //Write it to the data file
-        updateGameDataItems();
-
-        //Update the Main Panel
-        updateMainGamePanel();
-
-        //Show an alert with all of the money you made or lost
-        showAlert();
-
-    }
-
     public void closeAlert()
     {
         //If they still have money
@@ -219,9 +225,29 @@ public class tradeManager : MonoBehaviour {
         }
     }
 
-
     public void buySellPortButton()
     {
+
+        string[] allPorts;
+        string returnedAllPorts = dm.returnAllPorts();
+        allPorts = returnedAllPorts.Split(',');
+
+        string[] scripts;
+        string returnedScripts = dm.returnScripts();
+        scripts = returnedScripts.Split(',');
+
+
+        //State in the description whether you own the port
+        if (mapManager.lastPortChosen.doYouOwnPort.Equals("yes"))
+        {
+            textHeaderDescription.text = scripts[7];
+        }
+        else
+        {
+            textHeaderDescription.text = scripts[8];
+        }
+
+        
 
         //If you click the buy or sell button
 
