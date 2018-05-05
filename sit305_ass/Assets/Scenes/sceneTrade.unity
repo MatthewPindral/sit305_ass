@@ -187,7 +187,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9808902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521937514}
+        m_MethodName: hireFireCrewButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &9808902
@@ -369,7 +380,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 113249322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 359.6, y: -18.999998, z: 0}
+  m_LocalPosition: {x: 359.6, y: -19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 839618608}
@@ -419,7 +430,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 113249325}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521937514}
+        m_MethodName: clickedBuyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &113249325
@@ -1280,7 +1302,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 577797483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -50.699997, z: 0}
+  m_LocalPosition: {x: 53, y: -50.699997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 618108040}
@@ -1496,7 +1518,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701115916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.36264, y: -29.152893, z: -113.22168}
+  m_LocalPosition: {x: 70.36264, y: -29.152893, z: -113.22168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 577797484}
@@ -1944,7 +1966,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 950611145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 361.6, y: -58, z: 0}
+  m_LocalPosition: {x: 361.59998, y: -58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1506576264}
@@ -2613,8 +2635,7 @@ MonoBehaviour:
   crewHired: {fileID: 1665140499}
   silverItemsOwned: {fileID: 1665140498}
   potteryItemsOwned: {fileID: 1665140497}
-  inputBuy: {fileID: 2115388573}
-  inputSell: {fileID: 0}
+  inputValue: {fileID: 2115388573}
   buttonClicked: 
 --- !u!1001 &1544564622
 Prefab:

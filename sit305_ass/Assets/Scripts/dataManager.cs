@@ -18,8 +18,7 @@ public class dataManager {
 
     }
 
-    //I need a function to be able to insert values into the gameData file
-
+    
     public void writeToDataFile(string updatedGameFile)
     {
         string temporaryTextFileName = "data";
@@ -35,9 +34,52 @@ public class dataManager {
 
     }
 
+
+        public void writeToPortFile(string updatedPortFile)
+    {
+        string temporaryTextFileName = "ports";
+
+        //I want to add the data file headings to the updatedGameDataFile
+        updatedPortFile = returnPortHeadings() + updatedPortFile;
+
+        Debug.Log("updatedPortFile"+updatedPortFile);
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", updatedPortFile);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
+
+    public string returnPortHeadings()
+    {
+        string portHeadings = "";
+
+        //Read the data text file
+        string temporaryTextFileName = "ports";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        string wholeTextFile = textAsset.text;
+
+        //Find where the game data headings finish
+        int endIndex = wholeTextFile.IndexOf("_") + 1;
+
+        //Get the substring
+        portHeadings = wholeTextFile.Substring(0,endIndex);
+
+        Debug.Log("portHeadings"+portHeadings);
+
+        return portHeadings;
+    }
+
+
     public string returnScripts()
     {
-        string allPorts = "";
+        string scripts = "";
 
         //Read the port text file
         string temporaryTextFileName = "scripts";
@@ -50,9 +92,9 @@ public class dataManager {
         //Find where the first port starts
         int startIndex = wholeTextFile.IndexOf("_") + 1;
 
-        allPorts = wholeTextFile.Substring(startIndex);
+        scripts = wholeTextFile.Substring(startIndex);
 
-        return allPorts;
+        return scripts;
     }
 
 

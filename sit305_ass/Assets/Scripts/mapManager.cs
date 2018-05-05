@@ -67,6 +67,7 @@ public class mapManager : MonoBehaviour {
 
         foreach (var pm in portsListForPresentationOnScreen)
         {
+
             if (portClicked == pm.portName)
             {
 
@@ -429,10 +430,6 @@ public class mapManager : MonoBehaviour {
                 }
 
             }
-
-
-
-            //HERE DOING THIS BELOW
 
             //PORT OWNERSHIP VALUE
             if (portValue[6].Equals("low"))
