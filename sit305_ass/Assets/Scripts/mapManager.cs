@@ -79,7 +79,7 @@ public class mapManager : MonoBehaviour {
                 potteryValue.text = "$"+ pm.potteryValue;
 
                 //Keep a record of the last clickedPort
-                lastPortChosen = new portTempValueManager(pm.portName, pm.doYouOwnPort, pm.portTax, pm.chancePirates, pm.silverValue, pm.potteryValue);
+                lastPortChosen = new portTempValueManager(pm.portName, pm.doYouOwnPort, pm.portTax, pm.chancePirates, pm.silverValue, pm.potteryValue,pm.portOwnValue);
 
             }
         }

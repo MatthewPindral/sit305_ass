@@ -14,8 +14,9 @@ public class tradeManager : MonoBehaviour {
 
     public Text textHeaderDescription;
 
-    public Text textBuyDescription;
-    public Text textSellDescription;
+    public Text textValueDescription;
+
+    public Text textOutput;
 
     public Button buyButton;
     public Button sellButton;
@@ -45,6 +46,8 @@ public class tradeManager : MonoBehaviour {
     public InputField inputBuy;
     public InputField inputSell;
 
+    public string buttonClicked;
+
 
     // Use this for initialization
     void Start () {
@@ -52,7 +55,7 @@ public class tradeManager : MonoBehaviour {
         alertPanel.SetActive(false);
 
         dm = new dataManager();
-        mpm = new mainPanelManager();
+        //mpm = new mainPanelManager();
 
         string returnedGameData = dm.returnGameData();
         gameData = returnedGameData.Split(',');
@@ -228,6 +231,8 @@ public class tradeManager : MonoBehaviour {
     public void buySellPortButton()
     {
 
+        buttonClicked = "port";
+
         string[] allPorts;
         string returnedAllPorts = dm.returnAllPorts();
         allPorts = returnedAllPorts.Split(',');
@@ -244,21 +249,102 @@ public class tradeManager : MonoBehaviour {
         }
         else
         {
+            //If you do not own the port
             textHeaderDescription.text = scripts[8];
         }
 
-        
-
-        //If you click the buy or sell button
-
-
-        //Write it to the data file
-
-
-        //Update the Main Panel
-        mpm.updateMainGamePanel();
+        //State the value of the port
+        textValueDescription.text = scripts[9] +": "+mapManager.lastPortChosen.portOwnValue;
 
     }
+
+
+    public void clickedBuyButton(){
+
+        //If they click buy when on teh port screen
+        if (buttonClicked.Equals("port")){
+
+            //Check whether they have enough money
+            if(Int32.Parse(gameData[0])-mapManager.lastPortChosen.portOwnValue<0){
+
+                //You do not have enough money
+                textOutput.text = scripts[10];
+
+            } else{
+
+                //They do have enough money
+
+                //Data.MoneyOwned goes down
+                changeMoney(Int32.Parse(gameData[0])-mapManager.lastPortChosen.portOwnValue);
+
+                //Data.Portsowned goes up by one
+                changePortsOwned(1);
+
+                //port.DoYouOwnPort changes to yes
+                //HERE
+
+
+                //mapManager.lastPortChosen.doYouOwnPort goes to Yes
+
+
+                //Update the Main Panel
+                //mpm.updateMainGamePanel();
+                updateMainGamePanel();
+
+
+            }
+
+        }
+
+
+
+    }
+
+    void changeMoney(int money){
+
+        //Save the last port chosen into the game Data array
+        gameData[0]=money.ToString();
+        
+        writeDataToFile();
+
+    }
+
+    void changePortsOwned(int owned){
+
+        gameData[1] = gameData[1] + owned;
+
+        writeDataToFile();
+
+    }
+
+
+    void writeDataToFile(){
+
+        string updatedGameData = "";
+
+        //Compile the array back to a single string
+        foreach (string gd in gameData)
+        {
+            updatedGameData = updatedGameData + gd+",";
+        }
+
+        //Chop off the last comma
+        int index = updatedGameData.LastIndexOf(',');
+        updatedGameData = updatedGameData.Substring(0, index);
+
+        //Then update the data file
+        dm.writeToDataFile(updatedGameData);
+
+    }
+
+
+
+
+
+
+
+
+
 
     public void hireFireCrewButton()
     {
@@ -269,7 +355,8 @@ public class tradeManager : MonoBehaviour {
 
 
         //Update the Main Panel
-        mpm.updateMainGamePanel();
+        //mpm.updateMainGamePanel();
+        updateMainGamePanel();
 
     }
 
@@ -283,7 +370,8 @@ public class tradeManager : MonoBehaviour {
 
 
         //Update the Main Panel
-        mpm.updateMainGamePanel();
+        //mpm.updateMainGamePanel();
+        updateMainGamePanel();
 
     }
 
@@ -298,7 +386,8 @@ public class tradeManager : MonoBehaviour {
 
 
         //Update the Main Panel
-        mpm.updateMainGamePanel();
+        //mpm.updateMainGamePanel();
+        updateMainGamePanel();
 
     }
 
