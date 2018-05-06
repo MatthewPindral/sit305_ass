@@ -1,1 +1,1 @@
-MoneyOwned,PortsOwned,CrewHired,SilverItems,PotteryItems,CurrentPort_98354,15,48,0,0,Zeon
+MoneyOwned,PortsOwned,CrewHired,SilverItems,PotteryItems,CurrentPort_1000,0,4,3,4,Claudia

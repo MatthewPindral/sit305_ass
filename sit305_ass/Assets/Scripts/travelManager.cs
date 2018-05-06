@@ -29,6 +29,8 @@ public class travelManager : MonoBehaviour {
     public Text silverItemsOwned;
     public Text potteryItemsOwned;
 
+    public static portTempValueManager currentPort;
+
     // Use this for initialization
     void Start () {
 
@@ -36,17 +38,27 @@ public class travelManager : MonoBehaviour {
 
         dm = new dataManager();
 
+        getGameData();
+
+        //copy last port chosen over to current port
+        cloneLastPortToCurrentPort();
+
         //if parates come
         if (doesPirateCome())
         {
-            pirateTakesItems();
 
-            updateGameDataItems();
+            StartCoroutine(movePirateShip());
 
-            updateMainGamePanel();
+
+            StartCoroutine(waitAndPiratesCome());
+            //pirateTakesItems();
+
+            //updateGameDataItems();
+
+            //updateMainGamePanel();
 
             //Show an alert of what just happened
-            showAlert();
+            //showAlert();
 
         }
         else
@@ -57,6 +69,93 @@ public class travelManager : MonoBehaviour {
             StartCoroutine(waitAndClose());
         }
 
+
+    }
+
+    IEnumerator movePirateShip(){
+
+        Vector3 targetPosition = new Vector3 (2, 0, 2);  
+        Vector3 currentPosition = pirateShip.transform.position;  
+        while (Vector3.Distance (currentPosition, targetPosition) > 0.1f) { 
+            pirateShip.transform.position = Vector3.Lerp (pirateShip.transform.position, targetPosition, 0.6f * Time.deltaTime);  
+     
+            yield return null;
+        }
+
+    }
+
+
+    IEnumerator waitAndPiratesCome()
+    {
+        yield return new WaitForSeconds(5.0f);
+
+            pirateTakesItems();
+
+            updateGameDataItems();
+
+            updateMainGamePanel();
+
+            //Show an alert of what just happened
+            showAlert();
+
+    }
+
+
+
+    void cloneLastPortToCurrentPort(){
+
+        //update the class
+        currentPort = new portTempValueManager(
+            mapManager.lastPortChosen.portName,
+            mapManager.lastPortChosen.doYouOwnPort,
+            mapManager.lastPortChosen.portTax,
+            mapManager.lastPortChosen.chancePirates,
+            mapManager.lastPortChosen.silverValue,
+            mapManager.lastPortChosen.potteryValue,
+            mapManager.lastPortChosen.portOwnValue);
+
+        changeCurrentPort();
+
+    }
+
+    void changeCurrentPort(){
+
+        //update the data file with the current port
+        gameData[5] = currentPort.portName;
+
+        //Write it to the data file
+        writeDataToFile();
+    }
+
+        void writeDataToFile(){
+
+        string updatedGameData = "";
+
+        //Compile the array back to a single string
+        foreach (string gd in gameData)
+        {
+            updatedGameData = updatedGameData + gd+",";
+        }
+
+        //Chop off the last comma
+        int index = updatedGameData.LastIndexOf(',');
+        updatedGameData = updatedGameData.Substring(0, index);
+
+        //Then update the data file
+        dm.writeToDataFile(updatedGameData);
+
+        //refresh the game data array
+        getGameData();
+
+    }
+
+    void getGameData(){
+
+        //Clear it out
+        //Array.Clear(gameData, 0, gameData.Length);
+        //then refresh it
+        string returnedGameData = dm.returnGameData();
+        gameData = returnedGameData.Split(',');
 
     }
 

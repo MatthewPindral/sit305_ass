@@ -49,7 +49,7 @@ public class tradeManager : MonoBehaviour {
 
     public string buttonClicked;
 
-    public static portTempValueManager currentPort;
+
 
 
     // Use this for initialization
@@ -71,9 +71,6 @@ public class tradeManager : MonoBehaviour {
 
         string returnedPorts = dm.returnAllPorts();
         ports = returnedPorts.Split('_');
-
-        //copy last port chosen over to current port
-        cloneLastPortToCurrentPort();
 
         if (mapManager.doITakeMoney)
         {
@@ -110,21 +107,7 @@ public class tradeManager : MonoBehaviour {
     }
 
 
-    void cloneLastPortToCurrentPort(){
 
-        //update the class
-        currentPort = new portTempValueManager(
-            mapManager.lastPortChosen.portName,
-            mapManager.lastPortChosen.doYouOwnPort,
-            mapManager.lastPortChosen.portTax,
-            mapManager.lastPortChosen.chancePirates,
-            mapManager.lastPortChosen.silverValue,
-            mapManager.lastPortChosen.potteryValue,
-            mapManager.lastPortChosen.portOwnValue);
-
-        changeCurrentPort();
-
-    }
 
 
     public void portTax()
@@ -133,17 +116,17 @@ public class tradeManager : MonoBehaviour {
         int randomNumber;
 
         //If you don't own the port
-        if (currentPort.doYouOwnPort.Equals("no"))
+        if (travelManager.currentPort.doYouOwnPort.Equals("no"))
         {
 
             //Need to do some checking if I do not have any money
 
 
             //Take money off your total if you don't own the port
-            gameData[0] = (Int32.Parse(gameData[0]) - currentPort.portTax).ToString();
+            gameData[0] = (Int32.Parse(gameData[0]) - travelManager.currentPort.portTax).ToString();
 
             //compile the alert string
-            alertString = scripts[3] + currentPort.portTax;
+            alertString = scripts[3] + travelManager.currentPort.portTax;
 
         } else
         {
@@ -262,7 +245,7 @@ public class tradeManager : MonoBehaviour {
         textOutput.text = "";
 
         //State in the description whether you own the port
-        if (currentPort.doYouOwnPort.Equals("yes"))
+        if (travelManager.currentPort.doYouOwnPort.Equals("yes"))
         {
             textHeaderDescription.text = scripts[7];
         }
@@ -273,10 +256,9 @@ public class tradeManager : MonoBehaviour {
         }
 
         //State the value of the port
-        textValueDescription.text = scripts[9] +": "+currentPort.portOwnValue;
+        textValueDescription.text = scripts[9] +": "+travelManager.currentPort.portOwnValue;
 
     }
-
 
     public void hireFireCrewButton()
     {
@@ -293,9 +275,37 @@ public class tradeManager : MonoBehaviour {
 
     }
 
+    public void buySellSilverButton()
+    {
 
+        buttonClicked = "silver";
+        inputValue.text = "";
+        textOutput.text = "";
 
+        //State how much silver you own
+        textHeaderDescription.text = gameData[3]+" "+scripts[14];
 
+        //State how much silver is valued at
+        textValueDescription.text = scripts[9] +": "+travelManager.currentPort.silverValue;
+
+    }
+
+   public void buySellPotteryButton()
+    {
+
+        buttonClicked = "pottery";
+        inputValue.text = "";
+        textOutput.text = "";
+
+        //State how much pottery you own
+        textHeaderDescription.text = gameData[4]+" "+scripts[15];
+
+        //State how much pottery is valued at
+        textValueDescription.text = scripts[9] +": "+travelManager.currentPort.potteryValue;
+
+    }
+
+ 
     public void clickedBuyButton(){
 
         //Firstly make sure they have entered a value
@@ -305,7 +315,7 @@ public class tradeManager : MonoBehaviour {
             if (buttonClicked.Equals("port")){
 
                 //Get the cost of the product(s)
-                int cost = Int32.Parse(inputValue.text) * currentPort.portOwnValue;
+                int cost = Int32.Parse(inputValue.text) * travelManager.currentPort.portOwnValue;
 
                 //Check whether they have enough money
                 if(Int32.Parse(gameData[0])-cost<0){
@@ -327,7 +337,7 @@ public class tradeManager : MonoBehaviour {
                     changeDoYouOwnPort("yes");
 
                     //mapManager.lastPortChosen.doYouOwnPort goes to Yes
-                    currentPort.doYouOwnPort = "yes";
+                    travelManager.currentPort.doYouOwnPort = "yes";
 
                     //Update text output to Transaction confirmed
                     textOutput.text = scripts[11];
@@ -336,7 +346,7 @@ public class tradeManager : MonoBehaviour {
 
                 //update the text header as to whether you own the port
                 //State in the description whether you own the port
-                if (currentPort.doYouOwnPort.Equals("yes"))
+                if (travelManager.currentPort.doYouOwnPort.Equals("yes"))
                 {
                     textHeaderDescription.text = scripts[7];
                 }
@@ -359,14 +369,75 @@ public class tradeManager : MonoBehaviour {
             //Update text output to Transaction confirmed
             textOutput.text = scripts[11];
 
+            //update the text header regarding how many crew you own
+            textHeaderDescription.text = gameData[2]+" "+scripts[13];
             
             }
 
 
-        
+            if (buttonClicked.Equals("silver")){
+
+            //Get the cost of the product(s)
+            int silverCost = Int32.Parse(inputValue.text) * travelManager.currentPort.silverValue;
+
+                //Check whether they have enough money
+                if(Int32.Parse(gameData[0])-silverCost<0){
+
+                    //You do not have enough money
+                    textOutput.text = scripts[10];
+
+                } else{
+                    
+                    //They do have enough money
+
+                    //Data.MoneyOwned goes down
+                    changeMoney(Int32.Parse(gameData[0])-silverCost);
+
+                    //Data.SilverItems goes up by the amount
+                    changeSilverItems(Int32.Parse(inputValue.text));
+
+                    //Update text output to Transaction confirmed
+                    textOutput.text = scripts[11];
+
+                    //State how much silver you own
+                    textHeaderDescription.text = gameData[3]+" "+scripts[14];
+
+                }
 
             
+            }
 
+            if (buttonClicked.Equals("pottery")){
+
+            //Get the cost of the product(s)
+            int potteryCost = Int32.Parse(inputValue.text) * travelManager.currentPort.potteryValue;
+
+                //Check whether they have enough money
+                if(Int32.Parse(gameData[0])-potteryCost<0){
+
+                    //You do not have enough money
+                    textOutput.text = scripts[10];
+
+                } else{
+                    
+                    //They do have enough money
+
+                    //Data.MoneyOwned goes down
+                    changeMoney(Int32.Parse(gameData[0])-potteryCost);
+
+                    //Data.PotteryItems goes up by the amount
+                    changePotteryItems(Int32.Parse(inputValue.text));
+
+                    //Update text output to Transaction confirmed
+                    textOutput.text = scripts[11];
+
+                    //State how much pottery you own
+                    textHeaderDescription.text = gameData[4]+" "+scripts[15];
+
+                }
+
+            
+            }
 
             //Update the Main Panel in all cases
             //mpm.updateMainGamePanel();
@@ -379,68 +450,215 @@ public class tradeManager : MonoBehaviour {
     }
 
 
-    void changeDoYouOwnPort(string own){
+    public void clickedSellButton(){
 
-    for (int i = 0; i < ports.Length - 1; i++){
+        //Firstly make sure they have entered a value
+        if(inputValue.text != ""){
 
-        if(ports[i].StartsWith(currentPort.portName)){
+            //If they click buy when on the port screen
+            if (buttonClicked.Equals("port")){
 
-            //split it out
-            string[] port = ports[i].Split(',');
+                //Check if they own the port
+                if(!travelManager.currentPort.doYouOwnPort.Equals("yes")){
 
-            //upate the array value with the own string
-            port[1]=own;
+                    //You dont own the port
+                    textOutput.text = scripts[8];
 
-            //reconstitute then add it back to ports
+                } else{
 
-            string updatedPort = "";
+                    //They own the port
 
-            //Compile the port array back to a single string
-            foreach (string po in port)
-            {
-                updatedPort = updatedPort + po+",";
+                    //Data.MoneyOwned goes up
+                    changeMoney(Int32.Parse(gameData[0])+travelManager.currentPort.portOwnValue);
+
+                    //Data.Portsowned goes down by one
+                    changePortsOwned(-1);
+
+                    //port.DoYouOwnPort changes to yes
+                    changeDoYouOwnPort("no");
+
+                    //mapManager.lastPortChosen.doYouOwnPort goes to Yes
+                    travelManager.currentPort.doYouOwnPort = "no";
+
+                    //Update text output to Transaction confirmed
+                    textOutput.text = scripts[11];
+
+                }
+
+                //update the text header as to whether you own the port
+                //State in the description whether you own the port
+                if (travelManager.currentPort.doYouOwnPort.Equals("no"))
+                {
+                    textHeaderDescription.text = scripts[8];
+                }
+                else
+                {
+                    //If you do not own the port
+                    textHeaderDescription.text = scripts[7];
+                }
+
             }
 
-            int index = updatedPort.LastIndexOf(',');
-            updatedPort = updatedPort.Substring(0, index);
-
-            //updatedPort = updatedPort+"_";
-            Debug.Log("I am here2"+updatedPort);
-
-            //Add it back to the ports array
-            ports[i] = updatedPort;
-
+            if (buttonClicked.Equals("crew")){
             
-            string updatedPorts = "";
+                //Get the number of crew that want to fire
+                int crewHired = Int32.Parse(inputValue.text);
 
-            //Compile the array back to a single string
-            foreach (string pos in ports)
-            {
-                updatedPorts = updatedPorts + pos+"_";
+                    //Check whether they own enough to sell that amount
+                    if(Int32.Parse(gameData[2])<Int32.Parse(inputValue.text)){
+
+                        //You do not own enough
+                        textOutput.text = scripts[16];
+
+                    } else{
+                        //Remove it from the total crew hired
+                        changeCrewHired(-crewHired);
+
+                        //Update text output to Transaction confirmed
+                        textOutput.text = scripts[11];
+
+                        //update the text header regarding how many crew you own
+                        textHeaderDescription.text = gameData[2]+" "+scripts[13];
+
+                    }
+
             }
 
-            //Chop off the last underscore
-            int index2 = updatedPorts.LastIndexOf('_');
-            updatedPorts = updatedPorts.Substring(0, index2);
-            
-            Debug.Log("I am here3"+updatedPorts);
-            
-            //Then update the data file
-            dm.writeToPortFile(updatedPorts);
+            if (buttonClicked.Equals("silver")){
 
-            //refresh the game data array
-            getPortData();
+            //Get the profit of the product(s)
+            int silverProfit = Int32.Parse(inputValue.text) * travelManager.currentPort.silverValue;
+
+                //Check whether they own enough to sell that amount
+                if(Int32.Parse(gameData[3])<Int32.Parse(inputValue.text)){
+
+                    //You do not own enough
+                    textOutput.text = scripts[16];
+
+                } else{
+                    
+                    //They do have enough money
+
+                    //Data.MoneyOwned goes down
+                    changeMoney(Int32.Parse(gameData[0])+silverProfit);
+
+                    //Data.SilverItems goes down by the amount
+                    changeSilverItems(-Int32.Parse(inputValue.text));
+
+                    //Update text output to Transaction confirmed
+                    textOutput.text = scripts[11];
+
+                    //State how much silver you own
+                    textHeaderDescription.text = gameData[3]+" "+scripts[14];
+
+                }
+
+            
+            }
+
+            if (buttonClicked.Equals("pottery")){
+
+            //Get the profit of the product(s)
+            int potteryProfit = Int32.Parse(inputValue.text) * travelManager.currentPort.potteryValue;
+
+                //Check whether they own enough to seel that amount
+                if(Int32.Parse(gameData[4])<Int32.Parse(inputValue.text)){
+
+                    //You do not own enough
+                    textOutput.text = scripts[16];
+
+                } else{
+                    
+                    //They do have enough money
+
+                    //Data.MoneyOwned goes down
+                    changeMoney(Int32.Parse(gameData[0])+potteryProfit);
+
+                    //Data.PotteryItems goes down by the amount
+                    changePotteryItems(-Int32.Parse(inputValue.text));
+
+                    //Update text output to Transaction confirmed
+                    textOutput.text = scripts[11];
+
+                    //State how much pottery you own
+                    textHeaderDescription.text = gameData[4]+" "+scripts[15];
+
+                }
+
+            
+            }
+
+            //Update the Main Panel in all cases
+            //mpm.updateMainGamePanel();
+            updateMainGamePanel();
+
 
         }
 
 
-
     }
 
 
 
-    }
+    void changeDoYouOwnPort(string own){
 
+        for (int i = 0; i < ports.Length - 1; i++){
+
+            if(ports[i].StartsWith(travelManager.currentPort.portName)){
+
+                //split it out
+                string[] port = ports[i].Split(',');
+
+                //upate the array value with the own string
+                port[1]=own;
+
+                //reconstitute then add it back to ports
+
+                string updatedPort = "";
+
+                //Compile the port array back to a single string
+                foreach (string po in port)
+                {
+                    updatedPort = updatedPort + po+",";
+                }
+
+                int index = updatedPort.LastIndexOf(',');
+                updatedPort = updatedPort.Substring(0, index);
+
+                //updatedPort = updatedPort+"_";
+                Debug.Log("I am here2"+updatedPort);
+
+                //Add it back to the ports array
+                ports[i] = updatedPort;
+
+                
+                string updatedPorts = "";
+
+                //Compile the array back to a single string
+                foreach (string pos in ports)
+                {
+                    updatedPorts = updatedPorts + pos+"_";
+                }
+
+                //Chop off the last underscore
+                int index2 = updatedPorts.LastIndexOf('_');
+                updatedPorts = updatedPorts.Substring(0, index2);
+                
+                Debug.Log("I am here3"+updatedPorts);
+                
+                //Then update the data file
+                dm.writeToPortFile(updatedPorts);
+
+                //refresh the game data array
+                getPortData();
+
+            }
+
+
+
+        }
+
+    }
 
     void changeMoney(int money){
 
@@ -450,7 +668,6 @@ public class tradeManager : MonoBehaviour {
         writeDataToFile();
 
     }
-
 
     void changeCrewHired(int crew){
 
@@ -469,20 +686,21 @@ public class tradeManager : MonoBehaviour {
 
     }
 
+    void changeSilverItems(int items){
 
-    void changeCurrentPort(){
+        gameData[3] = (Int32.Parse(gameData[3]) + items).ToString();
 
-        //update the data file with the current port
-        gameData[5] = currentPort.portName;
-
-        //Write it to the data file
         writeDataToFile();
+
     }
 
+    void changePotteryItems(int items){
 
+        gameData[4] = (Int32.Parse(gameData[4]) + items).ToString();
 
+        writeDataToFile();
 
-
+    }
 
     void writeDataToFile(){
 
@@ -505,53 +723,5 @@ public class tradeManager : MonoBehaviour {
         getGameData();
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void buySellSilverButton()
-    {
-
-        //If you click the buy or sell button
-
-
-        //Write it to the data file
-
-
-        //Update the Main Panel
-        //mpm.updateMainGamePanel();
-        updateMainGamePanel();
-
-    }
-
-    public void buySellPotteryButton()
-    {
-
-        //If you click the buy or sell button
-
-        
-
-        //Write it to the data file
-
-
-        //Update the Main Panel
-        //mpm.updateMainGamePanel();
-        updateMainGamePanel();
-
-    }
-
-    
-
 
 }
