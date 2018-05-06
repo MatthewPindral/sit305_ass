@@ -153,7 +153,7 @@ public class tradeManager : MonoBehaviour {
             gameData[0] = (Int32.Parse(gameData[0]) + ran).ToString();
 
             //compile the alert string
-            alertString = " " + scripts[4] + (Int32.Parse(gameData[0]) + ran);
+            alertString = " " + scripts[4] + ran;
         }
 
         //Write it to the data file
@@ -258,7 +258,7 @@ public class tradeManager : MonoBehaviour {
     public void buySellPortButton()
     {
         buttonClicked = "port";
-
+        inputValue.text = "";
         textOutput.text = "";
 
         //State in the description whether you own the port
@@ -282,7 +282,7 @@ public class tradeManager : MonoBehaviour {
     {
 
         buttonClicked = "crew";
-
+        inputValue.text = "";
         textOutput.text = "";
 
         //State how many crew you own
@@ -306,8 +306,6 @@ public class tradeManager : MonoBehaviour {
 
                 //Get the cost of the product(s)
                 int cost = Int32.Parse(inputValue.text) * currentPort.portOwnValue;
-
-                Debug.Log(cost);
 
                 //Check whether they have enough money
                 if(Int32.Parse(gameData[0])-cost<0){
@@ -348,6 +346,20 @@ public class tradeManager : MonoBehaviour {
                     textHeaderDescription.text = scripts[8];
                 }
 
+            }
+
+            if (buttonClicked.Equals("crew")){
+            
+            //Get the number of crew that want to be hired
+            int crewHired = Int32.Parse(inputValue.text);
+
+            //Add it to the total crew hired
+            changeCrewHired(crewHired);
+
+            //Update text output to Transaction confirmed
+            textOutput.text = scripts[11];
+
+            
             }
 
 
@@ -434,6 +446,16 @@ public class tradeManager : MonoBehaviour {
 
         //Save the last port chosen into the game Data array
         gameData[0]=money.ToString();
+        
+        writeDataToFile();
+
+    }
+
+
+    void changeCrewHired(int crew){
+
+        //Save the last port chosen into the game Data array
+        gameData[2]=(Int32.Parse(gameData[2]) + crew).ToString();
         
         writeDataToFile();
 
