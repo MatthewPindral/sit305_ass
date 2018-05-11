@@ -17,4 +17,6 @@ SID: 215315133
 - This file still needs compile instructions, and directory explanation so I know where to find stuff.
 - Your changelog needs a lot of work. And it also needs to be placed in the root directory here.
 
-
+# Matt comments 11/May
+- Apologies for the changelog, I had it located within a changelog folder within the root. I have just promoted the changelog into the root folder.
+- I hope to now knock off the final touches and even add some of the extra features (Animation) which I placed in the project plan.
