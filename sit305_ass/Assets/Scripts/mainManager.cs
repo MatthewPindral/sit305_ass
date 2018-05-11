@@ -26,9 +26,9 @@ public class mainManager : MonoBehaviour {
     {
 
         dm.writeDataResetToFile();
+        dm.writePortResetToFile();
 
         SceneManager.LoadScene("sceneMap", LoadSceneMode.Single);
-
 
     }
 

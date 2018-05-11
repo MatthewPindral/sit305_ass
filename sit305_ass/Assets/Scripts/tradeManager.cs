@@ -95,6 +95,16 @@ public class tradeManager : MonoBehaviour {
 
     }
 
+    void getMarketForces(){
+
+        //Clear it out
+        //Array.Clear(gameData, 0, gameData.Length);
+        //then refresh it
+        string returnedMarketForces = dm.returnMarketForces();
+        marketForces = returnedMarketForces.Split(',');
+
+    }
+
 
     void getPortData(){
 
@@ -233,6 +243,8 @@ public class tradeManager : MonoBehaviour {
         {
             //If you dont have money then it takes you back to the main scene and resets the game save
             dm.writeDataResetToFile();
+            dm.writePortResetToFile();
+            dm.writeMarketForcesResetToFile();
 
             SceneManager.LoadScene("sceneMain", LoadSceneMode.Single);
         }
@@ -356,6 +368,18 @@ public class tradeManager : MonoBehaviour {
                     textHeaderDescription.text = scripts[8];
                 }
 
+                //Update realestate market
+                if(gameData[1].Equals("2")){
+                    marketForces[5]="low";
+                }if(gameData[1].Equals("3")){
+                    marketForces[5]="medium";
+                }if(gameData[1].Equals("4")){
+                    marketForces[5]="high";
+                }
+                //Write Market forces to file
+                writeMarketForcesToFile();
+
+
             }
 
             if (buttonClicked.Equals("crew")){
@@ -371,6 +395,17 @@ public class tradeManager : MonoBehaviour {
 
             //update the text header regarding how many crew you own
             textHeaderDescription.text = gameData[2]+" "+scripts[13];
+
+            //Update wage market
+            if(gameData[2].Equals("4")){
+                marketForces[4]="low";
+            }if(gameData[2].Equals("5")){
+                marketForces[4]="medium";
+            }if(gameData[2].Equals("6")){
+                marketForces[4]="high";
+            }
+            //Write Market forces to file
+            writeMarketForcesToFile();
             
             }
 
@@ -404,6 +439,17 @@ public class tradeManager : MonoBehaviour {
 
                 }
 
+                //Update silver market
+                if(gameData[3].Equals("4")){
+                    marketForces[2]="low";
+                }if(gameData[3].Equals("5")){
+                    marketForces[2]="medium";
+                }if(gameData[3].Equals("6")){
+                    marketForces[2]="high";
+                }
+                //Write Market forces to file
+                writeMarketForcesToFile();
+
             
             }
 
@@ -435,6 +481,17 @@ public class tradeManager : MonoBehaviour {
                     textHeaderDescription.text = gameData[4]+" "+scripts[15];
 
                 }
+
+                //Update pottery market
+                if(gameData[4].Equals("4")){
+                    marketForces[3]="low";
+                }if(gameData[4].Equals("5")){
+                    marketForces[3]="medium";
+                }if(gameData[4].Equals("6")){
+                    marketForces[3]="high";
+                }
+                //Write Market forces to file
+                writeMarketForcesToFile();
 
             
             }
@@ -721,6 +778,28 @@ public class tradeManager : MonoBehaviour {
 
         //refresh the game data array
         getGameData();
+
+    }
+
+    void writeMarketForcesToFile(){
+        string updatedMarketForces = "";
+
+        //Compile the array back to a single string
+        foreach (string gd in marketForces)
+        {
+            updatedMarketForces = updatedMarketForces + gd+",";
+        }
+
+        //Chop off the last comma
+        int index = updatedMarketForces.LastIndexOf(',');
+        updatedMarketForces = updatedMarketForces.Substring(0, index);
+
+        //Then update the data file
+        dm.writeToMarketForcesFile(updatedMarketForces);
+
+        //refresh the game data array
+        getMarketForces();
+
 
     }
 

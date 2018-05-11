@@ -121,8 +121,10 @@ public class mapManager : MonoBehaviour {
         //Isolate a single port
         for (int i = 0; i < port.Length - 1; i++)
         {
+
             //Isolate a single value in each port
             string[] portValue = port[i].Split(',');
+
 
             //Then run over them to add dollar values rather than low, med, high.
 

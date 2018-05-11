@@ -49,16 +49,7 @@ public class travelManager : MonoBehaviour {
 
             StartCoroutine(movePirateShip());
 
-
             StartCoroutine(waitAndPiratesCome());
-            //pirateTakesItems();
-
-            //updateGameDataItems();
-
-            //updateMainGamePanel();
-
-            //Show an alert of what just happened
-            //showAlert();
 
         }
         else

@@ -52,6 +52,21 @@ public class dataManager {
 
     }
 
+    public void writeToMarketForcesFile(string updatedMarketForces)
+    {
+        string temporaryTextFileName = "marketForces";
+
+        //I want to add the data file headings to the updatedGameDataFile
+        updatedMarketForces = returnMarketForcesHeadings() + updatedMarketForces;
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", updatedMarketForces);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
 
     public string returnPortHeadings()
     {
@@ -190,6 +205,27 @@ public class dataManager {
         return gameDataHeadings;
     }
 
+    public string returnMarketForcesHeadings()
+    {
+        string marketForcesHeadings = "";
+
+        //Read the data text file
+        string temporaryTextFileName = "marketForces";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        string wholeTextFile = textAsset.text;
+
+        //Find where the game data headings finish
+        int endIndex = wholeTextFile.IndexOf("_") + 1;
+
+        //Get the substring
+        marketForcesHeadings = wholeTextFile.Substring(0,endIndex);
+        
+        return marketForcesHeadings;
+    }
+
     public string returnGameData()
     {
         string gameData = "";
@@ -231,12 +267,72 @@ public class dataManager {
 
     }
 
+    public string returnPortDataReset()
+    {
+        string portData = "";
+
+        //Read the data text file
+        string temporaryTextFileName = "portReset";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        portData = textAsset.text;
+
+        Debug.Log("portReset: "+ portData);
+
+        return portData;
+
+    }
+
+    public string returnMarketForcesReset()
+    {
+        string marketReset = "";
+
+        //Read the data text file
+        string temporaryTextFileName = "marketForcesReset";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        marketReset = textAsset.text;
+
+        Debug.Log("marketReset: "+ marketReset);
+
+        return marketReset;
+
+    }
+
     public void writeDataResetToFile()
     {
         string temporaryTextFileName = "data";
 
         //Then add only the end of the file to the game data
         File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", returnGameDataReset());
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
+    public void writePortResetToFile()
+    {
+        string temporaryTextFileName = "ports";
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", returnPortDataReset());
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
+    public void writeMarketForcesResetToFile()
+    {
+        string temporaryTextFileName = "marketForces";
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", returnMarketForcesReset());
         UnityEditor.AssetDatabase.SaveAssets();
         UnityEditor.AssetDatabase.Refresh();
         TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
