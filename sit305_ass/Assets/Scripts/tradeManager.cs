@@ -379,8 +379,18 @@ public class tradeManager : MonoBehaviour {
                 //Write Market forces to file
                 writeMarketForcesToFile();
 
+                //If they now own all ports then switch to the end screen
+
+                if (gameData[1].Equals("5")){
+
+                    SceneManager.LoadScene("sceneEnd", LoadSceneMode.Single);
+
+                }
+
 
             }
+
+
 
             if (buttonClicked.Equals("crew")){
             
