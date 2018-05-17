@@ -1,1 +1,1 @@
-portName,isPortOwned,portTax,chancePirates,silverValue,potteryValue,portOwnValue_Alexis,yes,low,low,low,low,low_Zeon,yes,low,low,low,low,low_Nova,yes,medium,medium,medium,medium,medium_Serilda,no,high,high,high,high,high_Claudia,yes,high,high,high,high,high_
+portName,isPortOwned,portTax,chancePirates,silverValue,potteryValue,portOwnValue_Alexis,no,low,low,low,low,low_Zeon,no,low,low,low,low,low_Nova,no,medium,medium,medium,medium,medium_Serilda,no,high,high,high,high,high_Claudia,no,high,high,high,high,high_
