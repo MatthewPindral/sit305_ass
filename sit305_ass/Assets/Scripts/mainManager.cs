@@ -39,7 +39,7 @@ public class mainManager : MonoBehaviour {
 
     public void manageGameData()
     {
-        SceneManager.LoadScene("sceneTrade", LoadSceneMode.Single);
+        SceneManager.LoadScene("sceneDataManagement", LoadSceneMode.Single);
     }
 
     public void exitGame()

@@ -14,7 +14,6 @@ public class dataManager {
         UnityEditor.AssetDatabase.SaveAssets();
         UnityEditor.AssetDatabase.Refresh();
         TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
-        Debug.Log(textAsset);
 
     }
 
@@ -35,14 +34,40 @@ public class dataManager {
     }
 
 
+    public void writeWholeDataFile(string updatedGameFile)
+    {
+        string temporaryTextFileName = "data";
+
+        //I want to add the data file headings to the updatedGameDataFile
+        //updatedGameFile = returnGameDataHeadings() + updatedGameFile;
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", updatedGameFile);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
+    public void writeWholePortFile(string updatedGameFile)
+    {
+        string temporaryTextFileName = "ports";
+
+        //Then add only the end of the file to the game data
+        File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", updatedGameFile);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+    }
+
+
         public void writeToPortFile(string updatedPortFile)
     {
         string temporaryTextFileName = "ports";
 
         //I want to add the data file headings to the updatedGameDataFile
         updatedPortFile = returnPortHeadings() + updatedPortFile;
-
-        Debug.Log("updatedPortFile"+updatedPortFile);
 
         //Then add only the end of the file to the game data
         File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", updatedPortFile);
@@ -85,8 +110,6 @@ public class dataManager {
 
         //Get the substring
         portHeadings = wholeTextFile.Substring(0,endIndex);
-
-        Debug.Log("portHeadings"+portHeadings);
 
         return portHeadings;
     }
@@ -153,6 +176,26 @@ public class dataManager {
 
         return allPorts;
     }
+
+    public string returnWholePorts()
+    {
+        string allPorts = "";
+
+        //Read the port text file
+        string temporaryTextFileName = "ports";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        string wholeTextFile = textAsset.text;
+
+        allPorts = wholeTextFile;
+
+        return allPorts;
+    }
+
+
+
 
 
     public string returnPortDetails(string portName)
@@ -248,6 +291,25 @@ public class dataManager {
 
     }
 
+    public string returnWholeGameData()
+    {
+        string gameData = "";
+
+        //Read the data text file
+        string temporaryTextFileName = "data";
+        UnityEditor.AssetDatabase.Refresh();
+        TextAsset textAsset = Resources.Load(temporaryTextFileName) as TextAsset;
+
+        //Get the whole text file
+        string wholeTextFile = textAsset.text;
+
+        //Get the substring
+        gameData = wholeTextFile;
+
+        return gameData;
+
+    }
+
 
     public string returnGameDataReset()
     {
@@ -260,8 +322,6 @@ public class dataManager {
 
         //Get the whole text file
         gameData = textAsset.text;
-
-        Debug.Log("here: "+ gameData);
 
         return gameData;
 
@@ -279,8 +339,6 @@ public class dataManager {
         //Get the whole text file
         portData = textAsset.text;
 
-        Debug.Log("portReset: "+ portData);
-
         return portData;
 
     }
@@ -296,8 +354,6 @@ public class dataManager {
 
         //Get the whole text file
         marketReset = textAsset.text;
-
-        Debug.Log("marketReset: "+ marketReset);
 
         return marketReset;
 

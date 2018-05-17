@@ -22,6 +22,7 @@ public class mapManager : MonoBehaviour {
     public Button ButtonSerilda;
     public Button ButtonClaudia;
     public Button TravelButton;
+    public Button TradeButton;
 
     string[] gameData;
     string[] port;
@@ -36,6 +37,11 @@ public class mapManager : MonoBehaviour {
 
     private void Start()
     {
+
+        if(travelManager.currentPort!=null){
+            TradeButton.interactable = true;
+        }
+
         doITakeMoney = false;
 
         dm  = new dataManager();
@@ -67,6 +73,8 @@ public class mapManager : MonoBehaviour {
 
         foreach (var pm in portsListForPresentationOnScreen)
         {
+
+            Debug.Log(pm.portName+ pm.doYouOwnPort+ pm.portTax+ pm.chancePirates+ pm.silverValue+ pm.potteryValue+pm.portOwnValue);
 
             if (portClicked == pm.portName)
             {
@@ -294,14 +302,14 @@ public class mapManager : MonoBehaviour {
                 if (forces[2].Equals("medium"))
                 {
 
-                    randomNumber = random.Next(300, 400);
+                    randomNumber = random.Next(400, 600);
                     portValue[4] = randomNumber.ToString();
                 }
 
                 if (forces[2].Equals("high"))
                 {
 
-                    randomNumber = random.Next(400, 500);
+                    randomNumber = random.Next(800, 1000);
                     portValue[4] = randomNumber.ToString();
                 }
 
@@ -337,7 +345,7 @@ public class mapManager : MonoBehaviour {
                 if (forces[2].Equals("low"))
                 {
 
-                    randomNumber = random.Next(700, 900);
+                    randomNumber = random.Next(500, 600);
                     portValue[4] = randomNumber.ToString();
                 }
 
@@ -351,7 +359,7 @@ public class mapManager : MonoBehaviour {
                 if (forces[2].Equals("high"))
                 {
 
-                    randomNumber = random.Next(900, 1000);
+                    randomNumber = random.Next(1100, 1300);
                     portValue[4] = randomNumber.ToString();
                 }
 
@@ -377,7 +385,7 @@ public class mapManager : MonoBehaviour {
                 if (forces[3].Equals("high"))
                 {
 
-                    randomNumber = random.Next(600, 800);
+                    randomNumber = random.Next(800, 1000);
                     portValue[5] = randomNumber.ToString();
                 }
 
@@ -402,7 +410,7 @@ public class mapManager : MonoBehaviour {
                 if (forces[3].Equals("high"))
                 {
 
-                    randomNumber = random.Next(800, 1000);
+                    randomNumber = random.Next(900, 1200);
                     portValue[5] = randomNumber.ToString();
                 }
 
@@ -427,7 +435,7 @@ public class mapManager : MonoBehaviour {
                 if (forces[3].Equals("high"))
                 {
 
-                    randomNumber = random.Next(900, 1000);
+                    randomNumber = random.Next(1100, 1400);
                     portValue[5] = randomNumber.ToString();
                 }
 

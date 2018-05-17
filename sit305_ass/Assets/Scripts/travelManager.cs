@@ -242,12 +242,8 @@ public class travelManager : MonoBehaviour {
                 //Set the pottery pieces to zero
                 howManyPotteryPiratesTook = 0;
 
-                Debug.Log("More silver than items"+silverOwned+","+potteryOwned + "," +howManySilverPiratesTook + "," + itemsPirateWillTake + "," + potteryItemstoTake);
-
             } else
             {
-
-                Debug.Log("Less silver than items" + silverOwned + "," + potteryOwned + "," + howManySilverPiratesTook + "," + itemsPirateWillTake + "," + potteryItemstoTake);
 
                 //determine how many more items to take and turn to positive
                 potteryItemstoTake = (silverOwned - itemsPirateWillTake) * -1;
@@ -336,8 +332,6 @@ public class travelManager : MonoBehaviour {
         int chancePirates = mapManager.lastPortChosen.chancePirates;
 
         int pirateCalculation = randomNumber * chancePirates;
-
-        Debug.Log(pirateCalculation);
 
         if (pirateCalculation > 70)
         {

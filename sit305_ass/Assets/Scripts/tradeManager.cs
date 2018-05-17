@@ -692,8 +692,6 @@ public class tradeManager : MonoBehaviour {
                 int index = updatedPort.LastIndexOf(',');
                 updatedPort = updatedPort.Substring(0, index);
 
-                //updatedPort = updatedPort+"_";
-                Debug.Log("I am here2"+updatedPort);
 
                 //Add it back to the ports array
                 ports[i] = updatedPort;
@@ -710,8 +708,6 @@ public class tradeManager : MonoBehaviour {
                 //Chop off the last underscore
                 int index2 = updatedPorts.LastIndexOf('_');
                 updatedPorts = updatedPorts.Substring(0, index2);
-                
-                Debug.Log("I am here3"+updatedPorts);
                 
                 //Then update the data file
                 dm.writeToPortFile(updatedPorts);
