@@ -9,3 +9,10 @@
 20180309-Additional sceneMap UI enhancements to neaten the UI
 20180416-Added buttons to sceneTrade as per UI design
 20180421-Added resources folder with changelog, data, demonstrationVideo, images, licenses, marking justification, readme, sounds folders
+20180422-Coding up the Map sceneMain
+20180425-MapManager Script enhancements, TravelManager script created, TradeManager enhancements, screen flow between scenes
+20180428-Trade scene UI enhancements
+20180505-Wiring up the login for buying and selling ports, crew and merchandise
+20180506-Buying and selling crew completed. Stared Pirate Animation, strarted water animation, Updated Readme and moved changelog to root folder
+20180506-Completed Animation of Pirate ship, Completed DataReste functions for end game sequences.
+20180517-End success screen completed with logic, Debug comments removed and final bugs removed.
