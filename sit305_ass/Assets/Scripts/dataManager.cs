@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
+
 public class dataManager {
 
     
@@ -18,6 +20,7 @@ public class dataManager {
     }
 
     
+
     public void writeToDataFile(string updatedGameFile)
     {
         string temporaryTextFileName = "data";
@@ -39,7 +42,7 @@ public class dataManager {
         string temporaryTextFileName = "data";
 
         //I want to add the data file headings to the updatedGameDataFile
-        //updatedGameFile = returnGameDataHeadings() + updatedGameFile;
+        updatedGameFile = returnGameDataHeadings() + updatedGameFile;
 
         //Then add only the end of the file to the game data
         File.WriteAllText(Application.dataPath + "/Resources/" + temporaryTextFileName + ".txt", updatedGameFile);
@@ -49,7 +52,7 @@ public class dataManager {
 
     }
 
-    public void writeWholePortFile(string updatedGameFile)
+        public void writeWholePortFile(string updatedGameFile)
     {
         string temporaryTextFileName = "ports";
 
@@ -62,7 +65,8 @@ public class dataManager {
     }
 
 
-        public void writeToPortFile(string updatedPortFile)
+
+    public void writeToPortFile(string updatedPortFile)
     {
         string temporaryTextFileName = "ports";
 
@@ -77,7 +81,7 @@ public class dataManager {
 
     }
 
-    public void writeToMarketForcesFile(string updatedMarketForces)
+        public void writeToMarketForcesFile(string updatedMarketForces)
     {
         string temporaryTextFileName = "marketForces";
 
@@ -93,7 +97,7 @@ public class dataManager {
     }
 
 
-    public string returnPortHeadings()
+        public string returnPortHeadings()
     {
         string portHeadings = "";
 
@@ -115,7 +119,8 @@ public class dataManager {
     }
 
 
-    public string returnScripts()
+
+        public string returnScripts()
     {
         string scripts = "";
 
@@ -134,7 +139,6 @@ public class dataManager {
 
         return scripts;
     }
-
 
 
     public string returnMarketForces()
@@ -157,7 +161,9 @@ public class dataManager {
         return marketForces;
     }
 
-    public string returnAllPorts()
+
+
+        public string returnAllPorts()
     {
         string allPorts = "";
 
@@ -177,7 +183,8 @@ public class dataManager {
         return allPorts;
     }
 
-    public string returnWholePorts()
+
+        public string returnWholePorts()
     {
         string allPorts = "";
 
@@ -196,9 +203,7 @@ public class dataManager {
 
 
 
-
-
-    public string returnPortDetails(string portName)
+        public string returnPortDetails(string portName)
     {
         string portDetails = "";
 
@@ -227,7 +232,8 @@ public class dataManager {
     }
 
 
-    public string returnGameDataHeadings()
+
+        public string returnGameDataHeadings()
     {
         string gameDataHeadings = "";
 
@@ -248,7 +254,8 @@ public class dataManager {
         return gameDataHeadings;
     }
 
-    public string returnMarketForcesHeadings()
+
+        public string returnMarketForcesHeadings()
     {
         string marketForcesHeadings = "";
 
@@ -269,7 +276,8 @@ public class dataManager {
         return marketForcesHeadings;
     }
 
-    public string returnGameData()
+
+        public string returnGameData()
     {
         string gameData = "";
 
@@ -291,7 +299,8 @@ public class dataManager {
 
     }
 
-    public string returnWholeGameData()
+
+        public string returnWholeGameData()
     {
         string gameData = "";
 
@@ -311,6 +320,7 @@ public class dataManager {
     }
 
 
+
     public string returnGameDataReset()
     {
         string gameData = "";
@@ -327,7 +337,9 @@ public class dataManager {
 
     }
 
-    public string returnPortDataReset()
+
+
+        public string returnPortDataReset()
     {
         string portData = "";
 
@@ -343,7 +355,8 @@ public class dataManager {
 
     }
 
-    public string returnMarketForcesReset()
+
+        public string returnMarketForcesReset()
     {
         string marketReset = "";
 
@@ -359,7 +372,9 @@ public class dataManager {
 
     }
 
-    public void writeDataResetToFile()
+
+
+        public void writeDataResetToFile()
     {
         string temporaryTextFileName = "data";
 
@@ -371,7 +386,8 @@ public class dataManager {
 
     }
 
-    public void writePortResetToFile()
+
+        public void writePortResetToFile()
     {
         string temporaryTextFileName = "ports";
 
@@ -383,7 +399,8 @@ public class dataManager {
 
     }
 
-    public void writeMarketForcesResetToFile()
+
+        public void writeMarketForcesResetToFile()
     {
         string temporaryTextFileName = "marketForces";
 
